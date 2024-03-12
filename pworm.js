@@ -11,7 +11,7 @@ var TABSIZE = 2048, TABAND = 2047, T_PI = 1024, T_PI2 = 512;
 var MAXTICK = 100000;
 
 var isplay,nplay,pizzax,pizzay,pizzar;
-var wall,worm,pizza,air;
+var wall,worm = [],pizza,air;
 
 var keymap = [];
 var play = [];
@@ -179,7 +179,7 @@ function collisions(player,n)
 
 function advancement(player,i)
 {
-    wormLambda(draw,{i:worm,v:tick},player.xp,player.yp);
+    wormLambda(draw,{i:worm[i],v:tick},player.xp,player.yp);
 
     player.cx.push(player.xp);
     player.cy.push(player.yp);
@@ -330,10 +330,13 @@ function load()
 
     pizza = createPixel(context,0,255,0);
     wall = createPixel(context,0,0,255);
-    worm = createPixel(context,255,255,0);
+    worm[0] = createPixel(context,255,255,0);
+    worm[1] = createPixel(context,0,255,255);
+    worm[2] = createPixel(context,255,0,255);
+
     air = createPixel(context,0,0,0);
 
-    wormLambda(draw,{i:worm},10,10);
+    wormLambda(draw,{i:worm[0]},10,10);
     pizzaLambda(draw,{i:pizza},100,100,20);
 
     calctab();
