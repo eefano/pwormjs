@@ -100,7 +100,7 @@ function deletePizza()
 
 function scorestring(player,i)
 {
-    return "PL"+i+":"+player.cdim;
+    return "WORM"+(i+1)+":"+player.cdim + "  ";
 }
 
 function playersLambda(f)
@@ -155,7 +155,7 @@ function collisions(player,n)
 
     if(coll.indexOf(-1)>=0)
     {
-        endgame("PLAYER "+n+" SPLATTED INTO WALL");
+        endgame("PLAYER "+(n+1)+" SPLATTED INTO WALL");
     }
     else if(coll.indexOf(-2)>=0)
     {
@@ -170,7 +170,7 @@ function collisions(player,n)
         {
             if(tick-coll[i]>3)
             {
-                endgame("PLAYER "+n+" SPLATTED INTO WORM");
+                endgame("PLAYER "+(n+1)+" SPLATTED INTO WORM");
             }
         }
     }
