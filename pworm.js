@@ -15,6 +15,8 @@ var wall,worm,pizza,air;
 
 var keymap = [];
 var play = [];
+var leftkeys = [90,74,37];
+var rightkeys = [88,75,39];
 
 function calctab()
 {
@@ -193,12 +195,12 @@ function advancement(player,i)
     player.xp+=stab[player.ang]*0.7;
     player.yp+=ctab[player.ang]*0.7;
 
-    if(keys[90])
+    if(keys[leftkeys[i]])
     {
         player.ang+=32;
         if(player.ang>=TABSIZE) player.ang-=TABSIZE;
     }
-    if(keys[88])
+    if(keys[rightkeys[i]])
     {
         player.ang-=32;
         if(player.ang<0) player.ang+=TABSIZE;
@@ -271,11 +273,11 @@ function resize()
 
 function keypress(e)
 {
-    if(e.charCode==32)
+    if(e.charCode==49)
     {
         initgame(1);
     }
-/*    if(e.charCode==50)
+    if(e.charCode==50)
     {
         initgame(2);
     }
@@ -283,7 +285,7 @@ function keypress(e)
     {
         initgame(3);
     }
-*/
+
  return false;
 }
 
@@ -335,6 +337,6 @@ function load()
     pizzaLambda(draw,{i:pizza},100,100,20);
 
     calctab();
-    endgame("PIZZA WORM - PRESS SPACE TO RESTART");
+    endgame("PIZZA WORM - PRESS [1] TO RESTART SOLO [2] 2 WORMS [3] DUUH - [Z][X] TURN WORM1 [J][K] WORM2 [ARROWS] WORM3");
     window.requestAnimationFrame(step);
 }
