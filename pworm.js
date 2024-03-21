@@ -249,28 +249,26 @@ function step()
 }
 
 
-function resize()
-{
-    var h = window.innerHeight;
-    var w = window.innerWidth;
-
-    var kx = Math.floor(w / xres);
-    var ky = Math.floor(h / yres);
-    var k = 1;
-
-    if(kx<ky)
-    {
-        if(kx>1) k=kx; else k=1;
+function resize() {
+    let h = window.innerHeight * window.devicePixelRatio;
+    let w = window.innerWidth * window.devicePixelRatio;
+  
+    let kx = (w / xres) >> 0;
+    let ky = (h / yres) >> 0;
+    let k = 1;
+  
+    if (kx < ky) {
+      if (kx > 1) k = kx;
+      else k = 1;
+    } else {
+      if (ky > 1) k = ky;
+      else k = 1;
     }
-    else
-    {
-        if(ky>1) k=ky; else k=1;
-    }
-
-    canvas.style.width = (xres*k)+'px';
-    canvas.style.height = (yres*k)+'px';
-}
-
+  
+    canvas.style.width = (xres * k) / window.devicePixelRatio + "px";
+    canvas.style.height = (yres * k) / window.devicePixelRatio + "px";
+  }
+  
 function keypress(e)
 {
     if(e.charCode==49)
